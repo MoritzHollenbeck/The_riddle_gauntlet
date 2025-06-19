@@ -25,4 +25,80 @@ db.serialize(() => {
 
 })
 
+db.get("SELECT COUNT(*) as count FROM flashcards", (err, row) => {
+    if (row.count === 0) {
+        console.log("Adding test data...");
+        
+        const testCards = [
+            {
+                question: "What is yours but others use it more than you?",
+                correct_answers: JSON.stringify(["Name"]),
+                wrong_answers: JSON.stringify(["Phone", "Chocolate", "Age"])
+            },
+            {
+                question: "Which are programming languages?",
+                correct_answers: JSON.stringify(["JavaScript", "Python"]),
+                wrong_answers: JSON.stringify(["HTML", "CSS"])
+            },
+            {
+                question: "Which are programming languages?",
+                correct_answers: JSON.stringify(["JavaScript", "Python"]),
+                wrong_answers: JSON.stringify(["HTML", "CSS"])
+            },
+            {
+                question: "Which are programming languages?",
+                correct_answers: JSON.stringify(["JavaScript", "Python"]),
+                wrong_answers: JSON.stringify(["HTML", "CSS"])
+            },
+            {
+                question: "Which are programming languages?",
+                correct_answers: JSON.stringify(["JavaScript", "Python"]),
+                wrong_answers: JSON.stringify(["HTML", "CSS"])
+            },
+            {
+                question: "Which are programming languages?",
+                correct_answers: JSON.stringify(["JavaScript", "Python"]),
+                wrong_answers: JSON.stringify(["HTML", "CSS"])
+            },
+            {
+                question: "Which are programming c?",
+                correct_answers: JSON.stringify(["JavaScript", "Python"]),
+                wrong_answers: JSON.stringify(["HTML", "CSS"])
+            },
+            {
+                question: "Which are programming b?",
+                correct_answers: JSON.stringify(["JavaScript", "Python"]),
+                wrong_answers: JSON.stringify(["HTML", "CSS"])
+            },
+            {
+                question: "Which are programming a?",
+                correct_answers: JSON.stringify(["JavaScript", "Python"]),
+                wrong_answers: JSON.stringify(["HTML", "CSS"])
+            },
+            {
+                question: "Which are programming languages?",
+                correct_answers: JSON.stringify(["JavaScript", "Python"]),
+                wrong_answers: JSON.stringify(["HTML", "CSS"])
+            },
+            {
+                question: "Which are programming languages?",
+                correct_answers: JSON.stringify(["JavaScript", "Python"]),
+                wrong_answers: JSON.stringify(["HTML", "CSS"])
+            },
+            {
+                question: "Which are programming languages?",
+                correct_answers: JSON.stringify(["JavaScript", "Python"]),
+                wrong_answers: JSON.stringify(["HTML", "CSS"])
+            }
+        ];
+        
+        testCards.forEach(card => {
+            db.run(
+                "INSERT INTO flashcards (question, correct_answers, wrong_answers) VALUES (?, ?, ?)",
+                [card.question, card.correct_answers, card.wrong_answers]
+            );
+        });
+    }
+});
+
 module.exports = db;
